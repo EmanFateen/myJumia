@@ -19,7 +19,6 @@ class MainController extends Controller
        if(count($products)==0)
         {
             $categories = Catergory::all();
-
             foreach ($categories as $cat){
                 if($cat->link){
                    
@@ -68,19 +67,12 @@ class MainController extends Controller
                // return 'done';
             }
 
-         
+            $products = Product::all();
 
         }
-      //  $Products = Product::all();
         $categories = Catergory::where('parent_id',0)->get();
-        //  dd($categories);
-
-
         $brands  = Product::select('brand')->distinct()->get();
-
-
         return view('pages.index')->with(['products'=>$products,'brands'=>$brands,'categories'=>$categories]);
-       // return $products;
     }
 
     public function getProdactusOfCategory($catName){
